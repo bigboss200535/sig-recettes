@@ -25,7 +25,7 @@
                                 <div class="fv-row mb-10">
                                     <div class="d-flex flex-stack mb-2">
                                         <label class="form-label fw-bolder text-dark fs-6 mb-0">{{ __('email') }}</label>
-										<a href="{{ route('login') }}" class="link-success fs-6 fw-bolder">{{ __('remember_login') }}</a>
+										<a href="{{ url('/auth/login') }}" class="link-success fs-6 fw-bolder">{{ __('remember_login') }}</a>
                                     </div>
                                     <input class="form-control form-control-lg form-control-solid" type="email" name="email" value="admin@admin.com" autocomplete="off" placeholder="{{ __('email') }}" />
                                 <x-input-error :messages="$errors->get('email')" class="mt-2" />

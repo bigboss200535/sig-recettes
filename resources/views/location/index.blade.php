@@ -28,18 +28,13 @@
 						<div class="post d-flex flex-column-fluid" id="kt_post">
 							<!--begin::Container-->
 							<div id="kt_content_container" class="container-xxl">
-								<!--begin::Card-->
 								<div class="card">
 									<div class="card-header border-0 pt-6">
-										<!--begin::Card title-->
 										<div class="card-title">
 										</div>
 										<div class="card-toolbar">
-											<!--begin::Toolbar-->
 											<div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
-												<!--begin::Filter-->
 												<div class="w-150px me-3">
-													<!--begin::Select2-->
 													<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Status" data-kt-ecommerce-order-filter="status">
 														<option selected disabled>-Select Municipal-</option>
 														<option value="all" selected>BLITTA</option>
@@ -54,9 +49,9 @@
 												<div class="w-150px me-3">
 													<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Status" data-kt-ecommerce-order-filter="status">
 														<option selected disabled>-Data Set-</option>
-														<option value="all">All</option>
-														<option value="active">ARREARS</option>
-														<option value="locked">NO ARREARS</option>
+														<!-- <option value="all">All</option> -->
+														<option value="active">PAYERS</option>
+														<option value="locked">COLLECTORS</option>
 													</select>
 												</div>
 												<div class="w-150px me-3">
@@ -82,23 +77,5 @@
 								</div>
 							</div>
 						</div>
-
                    </div>
 		@endsection					
-	 <script>
-				var map_render = L.map('location_map').setView([8.2, 1.1], 10); // Set initial coordinates and zoom level
-				L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-				    maxZoom: 19,
-				}).addTo(map_render);
-		</script>
-		<script type="text/javascript">
-			fetch('fetch.php')
-		    .then(response => response.json())
-		    .then(data => {
-		        data.forEach(tax_payer => {
-		            L.marker([tax_payer.Latitute, tax_payer.Longitute]).addTo(map_render)
-		                .bindPopup(tax_payer.Fullname); 
-		                // Display employee name on click
-		        });
-		    });
-		</script>

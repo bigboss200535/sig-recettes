@@ -70,12 +70,9 @@
 												<p style="margin-left: 30px; color: red;">{{ __('all_fields_marked') }} (<b style="color: red;">*</b>) {{ __('is_mandatory') }}</p>
 											</div>
 											@if(session()->has('success'))
-													<div class="col-md-6" align="center" style="margin-left:30px">
+													<div class="col-md-10" align="center" style="margin-left:30px">
 														<div class="alert alert-success alert-dismissible fade show" role="alert">
-  													  		<strong>Success!</strong> {{ session()->get('success') }}
-  																<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    														<span aria-hidden="true">&times;</span>
-	  														</button>
+  													  		<strong>{{ __('success') }}!</strong>Saved with ID: {{ session()->get('success') }}
 													  </div>
 													</div>
 											@endif
@@ -124,7 +121,7 @@
 														<div class="col-md-6 fv-row">
 															<label class="required fs-6 fw-bold form-label mb-2">{{ __('national_id') }}</label>
 															<div class="position-relative">
-																<input type="text" class="form-control form-control-solid" minlength="3" maxlength="50" placeholder="{{ __('national_id') }}" name="national_id" id="national_id"/>
+																<input type="text" class="form-control form-control-solid" minlength="3" maxlength="50" placeholder="{{ __('national_id') }}" name="national_no" id="national_no"/>
 															</div>
 														</div>
 													</div>
@@ -150,7 +147,7 @@
 															<label class="fs-6 fw-bold form-label mb-2">{{ __('voter_id') }} </label>
 															<div class="row fv-row">
 																<div class="position-relative">
-																		<input type="text" class="form-control form-control-solid" minlength="3" maxlength="50" placeholder="{{ __('voter_id') }}" name="voter_id"  id="voter_id"/>
+																		<input type="text" class="form-control form-control-solid" minlength="3" maxlength="50" placeholder="{{ __('voter_id') }}" name="voter_no"  id="voter_no"/>
 																</div>
 															</div>
 														</div>
@@ -300,62 +297,3 @@
 
 @endsection			
 	
-<script>
-    $(document).ready(function () {
-        $('#kt_create_account_form').submit(function (e) {
-            e.preventDefault();
-
-            // Serialize the form data
-            var formData = $(this).serialize();
-
-            // Make an Ajax request to save the payer
-            $.ajax({
-                url: "#", // Replace with your actual route
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                // dataType: 'json',
-                success: function (data) {
-                    // Handle the success response
-                    console.log(data); // You can customize this part based on your needs
-                    alert('Payer saved successfully');
-                    // You may redirect or perform other actions here
-                },
-                error: function (xhr, status, error) {
-                    // Handle the error response
-                    console.error(xhr.responseText); // You can customize this part based on your needs
-                    alert('Error saving payer');
-                }
-            });
-        });
-    });
-
-
-    function toggleSearchButton() {
-        var inputValue = document.getElementById("searchInput").value;
-        var searchButton = document.getElementById("searchButton");
-        searchButton.disabled = (inputValue.trim() === "");
-    }
-
-    function checkMandatoryFields() {
-    	var surname = document.getElementById("surname").value;
-    	var othername = document.getElementById("othername").value; 
-    	var gender = document.getElementById("gender").value; 
-    	var telephone_1 = document.getElementById("telephone_1").value;
-    	var address = document.getElementById("address").value; 
-    	var zone_name = document.getElementById("zone_name").value; 
-    	var municipal = document.getElementById("municipal").value; 
-
-    
-    	var searchButton = document.getElementById("register_submit");
-    
-    // You can adjust the condition based on your requirements.
-    searchButton.hidden = (surname.trim() === "" || othername.trim() === "" || gender.trim() === "" || telephone_1.trim() === "" || address.trim() === "" || zone_name.trim() === "" || municipal.trim() === "");
-}
-</script>
-<script type="text/javascript">
-	$(document).ready(function() {
-    $('.search_payer').select2();
-});
-</script>

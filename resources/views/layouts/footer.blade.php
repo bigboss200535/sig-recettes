@@ -42,6 +42,50 @@
              document.getElementById('formattedTime').innerText = dashboard_time;
 
          });
-    </script>
+    
+         var map_render = L.map('location_map').setView([8.2, 1.1], 10); // Set initial coordinates and zoom level
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                }).addTo(map_render);
+        </script>
+        <script type="text/javascript">
+            fetch('fetch.php')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(tax_payer => {
+                    L.marker([tax_payer.Latitute, tax_payer.Longitute]).addTo(map_render)
+                        .bindPopup(tax_payer.Fullname); 
+                        // Display employee name on click
+                });
+            });
+        </script>
+
+<script>
+    $(document).ready(function () {
+          $('.search_payer').select2();
+    });
+
+
+    function toggleSearchButton() {
+        var inputValue = document.getElementById("searchInput").value;
+        var searchButton = document.getElementById("searchButton");
+        searchButton.disabled = (inputValue.trim() === "");
+    }
+
+    function checkMandatoryFields() {
+        var surname = document.getElementById("surname").value;
+        var othername = document.getElementById("othername").value; 
+        var gender = document.getElementById("gender").value; 
+        var telephone_1 = document.getElementById("telephone_1").value;
+        var address = document.getElementById("address").value; 
+        var zone_name = document.getElementById("zone_name").value; 
+        var municipal = document.getElementById("municipal").value; 
+        
+        var searchButton = document.getElementById("register_submit");
+    
+    // You can adjust the condition based on your requirements.
+    searchButton.hidden = (surname.trim() === "" || othername.trim() === "" || gender.trim() === "" || telephone_1.trim() === "" || address.trim() === "" || zone_name.trim() === "" || municipal.trim() === "");
+}
+</script>
     </body>
 </html>

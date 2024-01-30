@@ -19,10 +19,12 @@ use Illuminate\Support\Facades\Session;
 
 // login
 Route::get('/', function () {
-    return view('dashboard');
+    return view('auth/login');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
+Route::get('/locate', function () {
+    return view('location/index');
+});
 
 // dashboard 
 Route::get('/dashboard', function () {
@@ -53,11 +55,18 @@ Route::middleware('auth')->group(function () {
 
 });
 
-
 // Route::get('display/{id}', [PayerController::class, 'showsingle'])->name('payer.details');
 
 // Route::resource('/details/{payer}', PayerController::class);
 // Route::get('/payer/{payerid}', PostController::class .'@show')->name('posts.show');
+
+Route::get('/auth/forget-password', function (){
+    return view('/auth/forgot-password');
+});
+
+Route::get('/auth/login', function (){
+    return view('/auth/login');
+});
 
 Route::get('/payer/details', function (){
     return view('payer/details');

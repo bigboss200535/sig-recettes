@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-
 use App\Models\Payer; 
+use Illuminate\Support\Facades\Session;
 use DataTables;
 
 class PayerController extends Controller
@@ -95,32 +95,30 @@ class PayerController extends Controller
         //     'user_id' => 'nullable|min:1',
         // ]);
 
-         // Retrieve the count of existing taxpayers
+        // Retrieve the count of existing taxpayers
         $count_payers = Payer::count();
         // Extract the initials from the surname and firstname
-        $surnameInitial = strtoupper(substr($request->input('surname'), 0, 1));
-        $firstnameInitial = strtoupper(substr($request->input('othername'), 0, 1));
+        $surname_initial = strtoupper(substr($request->input('surname'), 0, 1));
+        $firstname_initial = strtoupper(substr($request->input('othername'), 0, 1));
         $count_plus_one = $count_payers + 1;
-        // Get the current hour, day, month, and year
         $currentMinute = date('i');
         $currentSecond = date('s');
         $currentHour = date('H');
         $currentDay = date('d');
         $currentMonth = date('m');
         $currentYear = date('Y');
-
         $desiredLength = 4;
-        $formattedTaxPayerId = str_pad($count_plus_one, $desiredLength, '0', STR_PAD_LEFT);
+        $formatted_id = str_pad($count_plus_one, $desiredLength, '0', STR_PAD_LEFT);
 
         $payer_details = new Payer();
-        $payer_details->TaxPayerId = $surnameInitial.$formattedTaxPayerId.$firstnameInitial.$currentHour.$currentDay.$currentMonth.$currentYear;
+        $payer_details->TaxPayerId = $surname_initial.$formatted_id.$firstname_initial.$currentHour.$currentDay.$currentMonth.$currentYear;
         $payer_details->Surname = strtoupper($request->input('surname'));
         $payer_details->Firstname = strtoupper($request->input('othername'));
         $payer_details->GenderId = $request->input('gender');
-        $payer_details->NationalIdNumber = $request->input('national_id');
+        $payer_details->NationalIdNumber = $request->input('national_no');
         $payer_details->Email = $request->input('email');
         $payer_details->FileNumber = $request->input('file_number');
-        $payer_details->VoterNumber = $request->input('voter_id');
+        $payer_details->VoterNumber = $request->input('voter_no');
         $payer_details->Telephone1 = $request->input('telephone_1');
         $payer_details->Telephone2 = $request->input('telephone_2');
         $payer_details->Geolocation = $request->input('geolocation');
@@ -134,8 +132,8 @@ class PayerController extends Controller
         $payer_details->MunicipalId = $request->input('municipal');
         $payer_details->ZoneId = $request->input('zone_name');
         $payer_details->save();
-
-        return redirect()->back()->with('success', 'Payer saved successfully!');
+        
+        return redirect()->back()->with('success', $payer_details->TaxPayerId);
     }
 
 

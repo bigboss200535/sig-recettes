@@ -37,17 +37,16 @@
                                      <h1 class="text-successs mb-3"> {{ __('signin') }}</h1>
                                 </div>
                                 <div class="fv-row mb-10">
-                                    <label class="form-label fs-6 fw-bolder text-dark">{{ __('email') }}</label>
-                                    <input maxlength="30" class="form-control form-control-lg form-control-solid" type="email" name="email" value="admin@admin.com" autocomplete="off" placeholder="{{ __('Email') }}" />
-                                    
+                                    <label class="form-label fs-6 fw-bolder text-dark">{{ __('username') }}</label>
+                                    <input maxlength="30" class="form-control form-control-lg form-control-solid" type="email" name="email" value="mohammed@mail.com" autocomplete="off" placeholder="{{ __('email') }}" />
                                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                 </div>
                                 <div class="fv-row mb-10">
                                     <div class="d-flex flex-stack mb-2">
                                         <label class="form-label fw-bolder text-dark fs-6 mb-0">{{ __('password') }}</label>
-                                        <a href="{{ route('password.request') }}" class="link-success fs-6 fw-bolder">{{ __('forgetpass') }}?</a>
+                                        <a href="{{ url('/auth/forget-password') }}" class="link-success fs-6 fw-bolder">{{ __('forgetpass') }}?</a>
                                     </div>
-                                    <input maxlength="30" class="form-control form-control-lg form-control-solid" type="password" name="password" value="admin" autocomplete="current-password" placeholder="{{ __('password') }}"/>
+                                    <input maxlength="30" class="form-control form-control-lg form-control-solid" type="password" name="password" value="password" autocomplete="current-password" placeholder="{{ __('password') }}"/>
                                 </div>
                                 <div  type="submit" id="login_submit" class="text-center">
                                     <button class="btn btn-lg btn-success w-100 mb-5">
