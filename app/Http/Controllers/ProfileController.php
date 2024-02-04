@@ -17,7 +17,6 @@ class ProfileController extends Controller
      */
     public function index(Request $request): View
     {
-        Session::put('locale', $locale);
         return view('profile.index', [
             'user' => $request->user(),
         ]);

@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/invoice/edit', [InvoiceController::class, 'editall'])->name('invoice.edit');   
     // tax payer 
     Route::get('/payers', [PayerController::class, 'index'])->name('payer.index');
+    // Route::get('details', [PayerController::class, 'showone'])->name('payer.details');
     Route::get('/payer/show', [PayerController::class, 'show'])->name('payer.show');
     Route::get('/payer/create', [PayerController::class, 'create'])->name('payer.create');
     Route::get('/payer/taxables', [PayerController::class, 'show'])->name('payer.show');
@@ -54,6 +55,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/payer/delete', [PayerController::class, 'destroy'])->name('payer.destroy');
 
 });
+
+
+
+Route::get('/payer/{PayerId}/details', [PayerController::class, 'showone'])
+    ->name('payer.details');
 
 // Route::get('display/{id}', [PayerController::class, 'showsingle'])->name('payer.details');
 
@@ -68,16 +74,16 @@ Route::get('/auth/login', function (){
     return view('/auth/login');
 });
 
-Route::get('/payer/details', function (){
-    return view('payer/details');
-});
+// Route::get('/payer/details', function (){
+//     return view('payer/details');
+// });
 
 Route::get('/payer/update', function (){
     return view('payer/update');
 });
 // local language
 Route::get('/locale/{locale}', function (Request $request, $locale) {
-    Session::put('locale', $locale);
+  
     return redirect()->back();
 })->name('locale');
 

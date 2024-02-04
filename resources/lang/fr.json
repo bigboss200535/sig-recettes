@@ -147,7 +147,10 @@
     "password_security_notice" : "Assurez-vous que votre compte utilise un mot de passe long et aléatoire pour rester en sécurité.",
     "account_delete_warning": "Une fois votre compte supprimé, toutes ses ressources et données seront définitivement supprimées. Veuillez saisir votre mot de passe pour confirmer que vous souhaitez supprimer définitivement votre compte.",
     "cancel" : "Annuler",
-    "success" : "Succès"
+    "success" : "Succès",
+    "payer_id_saved" : "Enregistré avec l'identifiant",
+    "edit" : "Edit",
+    "details" : "Details"
 
 
 }

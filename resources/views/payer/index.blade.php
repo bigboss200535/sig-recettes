@@ -71,6 +71,7 @@
 															<input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#tax_payers_table .form-check-input" value="1" disabled/>
 														</div>
 													</th>
+													<th class="min-w-125px">Payer A/C</th>
 													<th class="min-w-125px">{{ __('name') }}</th>
 													<th class="min-w-125px">{{ __('gender') }}</th>
 													<th class="min-w-125px">{{ __('status') }}</th>
@@ -88,6 +89,7 @@
 															<input class="form-check-input" type="checkbox" value="1" />
 														</div>
 													</td>
+													<td>{{ strtoupper($payer->PayerId) }}</td>
 													<td>
 														{{ strtoupper($payer->Fullname) }}
 													</td>
@@ -119,7 +121,7 @@
 														</a>
 														<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-warning fw-bold fs-7 w-125px py-4" data-kt-menu="true">
 															<div class="menu-item px-3">
-																<a href="{{ url('/payer/details') }}" class="menu-link px-3">{{ __('view') }}</a>
+																<a href="{{ route('payer.details', $payer->PayerId) }}" class="menu-link px-3">{{ __('view') }}</a>
 															</div>
 															<div class="menu-item px-3">
 																<a href="{{ url('/payer/delete') }}" class="menu-link px-3" data-kt-customer-table-filter="delete_row" data-payer-id="{{ $payer->TaxPayerId }}">{{ __('delete') }}</a>

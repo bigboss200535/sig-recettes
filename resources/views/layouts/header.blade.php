@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
     <title>{{ config('app.name') }} | {{ __('slogan') }}</title>
+        <!-- <meta name="google" content="notranslate"> -->
         <link href="{{ asset('plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet" type="text/css"/>
 		<link href="{{ asset('plugins/custom/vis-timeline/vis-timeline.bundle.css') }}" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
@@ -12,11 +13,11 @@
         <link rel="shortcut icon" href="{{ asset('media/logo.png') }}"/>
         <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
         <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('leaflet/dist_leaflet.css') }}">
+        <!-- <link rel="stylesheet" type="text/css" href="{{ asset('leaflet/dist_leaflet.css') }}"> -->
         <!-- <link href="assets/plugins/custom/leaflet/leaflet.bundle.css" rel="stylesheet" type="text/css" /> -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-        <link rel="stylesheet" type="text/css" href="{{ asset('leaflet/dist_leaflet.css') }}">
+        <!-- <link rel="stylesheet" type="text/css" href="{{ asset('leaflet/dist_leaflet.css') }}"> -->
     </head>
     <body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
         <div class="d-flex flex-column flex-root">

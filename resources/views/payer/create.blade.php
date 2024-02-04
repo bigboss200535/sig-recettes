@@ -72,7 +72,7 @@
 											@if(session()->has('success'))
 													<div class="col-md-10" align="center" style="margin-left:30px">
 														<div class="alert alert-success alert-dismissible fade show" role="alert">
-  													  		<strong>{{ __('success') }}!</strong>Saved with ID: {{ session()->get('success') }}
+  													  		<strong>{{ __('success') }}! </strong>{{ __('payer_id_saved')}}: <b> {{ session()->get('success') }}</b>
 													  </div>
 													</div>
 											@endif
@@ -239,6 +239,8 @@
 															</label>
 															<input type="text" class="form-control form-control-solid" placeholder="{{ __('neighborhood') }}" name="neighborhood" id="neighborhood" />
 														</div>
+
+														@if (Auth::user()->role_id == '5' || Auth::user()->role_id == '6' || Auth::user()->role_id == '7')
 														<div class="row mb-10">
 															<div class="col-md-6 fv-row">
 																<label class="required fs-6 fw-bold form-label mb-2">{{ __('municipal') }}</label>
@@ -265,6 +267,26 @@
 																</div>
 															</div>
 														</div>
+														@elseif (Auth::user()->role_id == '1' || Auth::user()->role_id == '2' || Auth::user()->role_id == '3' || Auth::user()->role_id == '4')
+
+														<div class="row mb-10">
+															<div class="col-md-6 fv-row">
+																<label class="fs-6 fw-bold form-label mb-2">{{ __('municipal') }}</label>
+																<div class="row fv-row">
+																	<div class="position-relative">
+																		<input type="text" class="form-control form-control-solid" name="municipal" disabled id="municipal" value="BLITA" />
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-6 fv-row">
+																<label class="fs-6 fw-bold form-label mb-2">{{ __('zone') }}</label>
+																<div class="position-relative">
+																	<input type="text" class="form-control form-control-solid" name="zone_name" disabled id="zone_name" value="ZONE 1" />
+																</div>
+															</div>
+														</div>
+														@endif
+
 														<div class="row mb-10" hidden>
 															<div class="col-md-6 fv-row">
 																<label class="required fs-6 fw-bold form-label mb-2">{{ __('user') }}</label>
@@ -281,7 +303,6 @@
 										</div>
 										<div class="d-flex justify-content-end">
 											<button type="reset" class="btn btn-warning  me-5">{{ __('clear') }}</button>
-											<!-- <a href="#" id="" class="btn btn-warning  me-5">Clear</a> -->
 											<button type="submit" id="register_submit" class="btn btn-success" hidden>
 												<span class="indicator-label">{{ __('submit') }} </span>
 												<span class="indicator-progress">{{ __('wait') }}...
@@ -294,6 +315,5 @@
 							</div>
 						</div>
 					</div>
-
 @endsection			
 	

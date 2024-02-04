@@ -148,7 +148,10 @@
     "do_you_want_to_delete" : "Are you sure you want to delete your account?",
     "account_delete_warning" : "Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.",
     "cancel" : "Cancel",
-    "success" : "Success"
+    "success" : "Success",
+    "payer_id_saved" : "Saved with Id",
+    "edit" : "Edit",
+    "details" : "Details"
 
 
     

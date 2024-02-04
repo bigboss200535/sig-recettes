@@ -87,5 +87,6 @@
     searchButton.hidden = (surname.trim() === "" || othername.trim() === "" || gender.trim() === "" || telephone_1.trim() === "" || address.trim() === "" || zone_name.trim() === "" || municipal.trim() === "");
 }
 </script>
+
     </body>
 </html>

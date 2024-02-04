@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Payer; 
+use App\Models\TaxPayerTaxable; 
 use Illuminate\Support\Facades\Session;
 use DataTables;
 
@@ -15,17 +16,14 @@ class PayerController extends Controller
         $payers = Payer::rightJoin('gender', 'gender.GenderId', '=', 'tax_payer.GenderId')
         ->where('tax_payer.Archived', 'NO')
         ->where('gender.Differential', '0')
-        ->select('tax_payer.*', 'gender.GenderId as GenderId', 'gender.GenderName')
+        ->select('tax_payer.*', 'tax_payer.TaxPayerId AS PayerId', 'gender.GenderId as GenderId', 'gender.GenderName')
+        ->orderBy('tax_payer.AddedDate', 'desc')
          // ->limit(20)
         ->get();
 
         return view('payer.index', compact('payers'));
     }
 
-    //  public function showsingle(TaxPayerId $taxpayeid)
-    // {
-    //     return view('payer.details',compact('payer'));
-    // } 
 
     public function show()
     {
@@ -38,6 +36,27 @@ class PayerController extends Controller
 
         return view('payer.show', compact('payers'));
     }
+
+    public function showone($PayerId)
+    {
+    // Fetch a single tax payer by PayerId
+        $payerdetails = Payer::rightJoin('gender', 'gender.GenderId', '=', 'tax_payer.GenderId')
+        ->where('tax_payer.TaxPayerId', $PayerId)
+        ->select('tax_payer.*', 'tax_payer.TaxPayerId as PayerId', 'gender.GenderId as GenderId', 'gender.GenderName')
+        ->orderBy('tax_payer.AddedDate', 'asc')  // Add this line for sorting
+        ->first();  // Use 'first' instead of 'get' to retrieve a single record
+
+
+        $payer_taxable_items = TaxPayerTaxable::rightJoin('tax_payer', 'tax_payer.TaxPayerId', '=', 'tp_taxable.TaxPayerId')
+        ->leftJoin('activity', 'activity.ActivityId', '=', 'tp_taxable.ActivityId')
+        ->where('tax_payer.TaxPayerId', $PayerId)
+        ->select('tp_taxable.*', 'tp_taxable.TaxPayerId as PayerId', 'tax_payer.TaxPayerId as TaxPayerId', 'tax_payer.Fullname', 'activity.ActivityName')
+        ->orderBy('tax_payer.AddedDate', 'asc')
+        ->get();
+    
+    return view('payer.details', compact('payerdetails', 'payer_taxable_items'));
+    }
+
 
     public function showsingle(Payer $payer)
     {
@@ -109,9 +128,10 @@ class PayerController extends Controller
         $currentYear = date('Y');
         $desiredLength = 4;
         $formatted_id = str_pad($count_plus_one, $desiredLength, '0', STR_PAD_LEFT);
+        $id_generated = $surname_initial.$formatted_id.$firstname_initial.$currentHour.$currentDay.$currentMonth.$currentYear;
 
         $payer_details = new Payer();
-        $payer_details->TaxPayerId = $surname_initial.$formatted_id.$firstname_initial.$currentHour.$currentDay.$currentMonth.$currentYear;
+        $payer_details->TaxPayerId = $id_generated;
         $payer_details->Surname = strtoupper($request->input('surname'));
         $payer_details->Firstname = strtoupper($request->input('othername'));
         $payer_details->GenderId = $request->input('gender');
@@ -133,7 +153,7 @@ class PayerController extends Controller
         $payer_details->ZoneId = $request->input('zone_name');
         $payer_details->save();
         
-        return redirect()->back()->with('success', $payer_details->TaxPayerId);
+        return redirect()->back()->with('success', $id_generated);
     }
 
 
