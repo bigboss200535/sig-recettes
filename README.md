@@ -18,9 +18,6 @@ Record payments, update their status, and maintain a clear historical log.
 - Outdoor billboard and advertisement payments
 Record payments, update their status, and maintain a clear historical log.
 
-- Outdoor billboard and advertisement payments
-Record payments, update their status, and maintain a clear historical log.
-
 - Search & Filtering
 Quickly locate vendors or payment records through built-in search tools.
 
