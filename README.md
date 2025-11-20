@@ -1,7 +1,8 @@
-## Sig-reccetes
-Sig-reccetes is a lightweight web application designed to help organizations manage tax payments and maintain a structured registry of vendors. It provides an organized workflow for recording transactions, tracking payment statuses, and storing vendor information in a centralized and easy-to-use interface.
+## Sig-reccetes (Tax Payment System)
+Sig-reccetes is a lightweight web application designed to help manage tax payments, collate revenue, issue tickets and maintain a structured registry of vendors. 
+It provides an organized workflow for recording transactions, tracking payment statuses, and storing vendor information in a centralized and easy-to-use interface.
 
-Features
+## Features
 - Vendor Management
 Add, edit, and organize vendor profiles with key business details.
 
